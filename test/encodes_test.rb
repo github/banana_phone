@@ -8,33 +8,33 @@ class EncodesTest < MiniTest::Should::TestCase
 
     context "ruby request encoder" do
       should "return BERT-RPC encoded request" do
-        bert = "\203h\004d\000\004calld\000\005mymodd\000\005myfunl\000\000\000\003a\001a\002a\003j"
-        assert_equal bert, @enc.encode_ruby_request(t[:call, :mymod, :myfun, [1, 2, 3]])
+        bert = "\x94\xD8\x00\x04\x01call\xD8\x00\x05\x01mymod\xD8\x00\x05\x01myfun\x93\x01\x02\x03"
+        assert_equal bert, @enc.encode_ruby_request([:call, :mymod, :myfun, [1, 2, 3]])
       end
     end
 
     context "bert response decoder" do
       should "return response when reply" do
-        req = @enc.encode_ruby_request(t[:reply, [1, 2, 3]])
+        req = @enc.encode_ruby_request([:reply, [1, 2, 3]])
         res = @enc.decode_bert_response(req)
         assert_equal [1, 2, 3], res
       end
 
       should "return nil when noreply" do
-        req = @enc.encode_ruby_request(t[:noreply])
+        req = @enc.encode_ruby_request([:noreply])
         res = @enc.decode_bert_response(req)
         assert_equal nil, res
       end
 
       should "raise a ProtocolError error when protocol level error is returned" do
-        req = @enc.encode_ruby_request(t[:error, [:protocol, 1, "class", "invalid", []]])
+        req = @enc.encode_ruby_request([:error, [:protocol, 1, "class", "invalid", []]])
         assert_raises(BERTRPC::ProtocolError) do
           @enc.decode_bert_response(req)
         end
       end
 
       should "raise a ServerError error when server level error is returned" do
-        req = @enc.encode_ruby_request(t[:error, [:server, 1, "class", "invalid", []]])
+        req = @enc.encode_ruby_request([:error, [:server, 1, "class", "invalid", []]])
         assert_raises(BERTRPC::ServerError) do
           @enc.decode_bert_response(req)
         end

@@ -7,11 +7,11 @@ module BERTRPC
     def decode_bert_response(bert_response)
       ruby_response = Mochilo.decode(bert_response)
       case ruby_response[0]
-        when :reply
+        when 'reply'
           ruby_response[1]
-        when :noreply
+        when 'noreply'
           nil
-        when :error
+        when 'error'
           error(ruby_response[1])
         else
           raise
@@ -22,13 +22,13 @@ module BERTRPC
       level, code, klass, message, backtrace = err
 
       case level
-        when :protocol
+        when 'protocol'
           raise ProtocolError.new([code, message], klass, backtrace)
-        when :server
+        when 'server'
           raise ServerError.new([code, message], klass, backtrace)
-        when :user
+        when 'user'
           raise UserError.new([code, message], klass, backtrace)
-        when :proxy
+        when 'proxy'
           raise ProxyError.new([code, message], klass, backtrace)
         else
           raise
