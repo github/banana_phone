@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ErrorTest < Test::Unit::TestCase
+class ErrorTest < MiniTest::Should::TestCase
   context "Errors in general" do
     should "be creatable with just a message string" do
       begin

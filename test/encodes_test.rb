@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EncodesTest < Test::Unit::TestCase
+class EncodesTest < MiniTest::Should::TestCase
   context "An Encodes includer" do
     setup do
       @enc = Enc.new

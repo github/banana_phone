@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActionTest < Test::Unit::TestCase
+class ActionTest < MiniTest::Should::TestCase
   context "An Action" do
     setup do
       @svc = BERTRPC::Service.new('localhost', 9941)

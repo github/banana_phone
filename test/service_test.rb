@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ServiceTest < Test::Unit::TestCase
+class ServiceTest < MiniTest::Should::TestCase
   context "A Service" do
     should "be creatable with host and port" do
       svc = BERTRPC::Service.new('localhost', 9941)

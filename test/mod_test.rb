@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ModTest < Test::Unit::TestCase
+class ModTest < MiniTest::Should::TestCase
   context "A Mod" do
     setup do
       @svc = BERTRPC::Service.new('localhost', 9941)
