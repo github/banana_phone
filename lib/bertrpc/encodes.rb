@@ -1,11 +1,11 @@
 module BERTRPC
   module Encodes
     def encode_ruby_request(ruby_request)
-      BERT.encode(ruby_request)
+      Mochilo.encode(ruby_request)
     end
 
     def decode_bert_response(bert_response)
-      ruby_response = BERT.decode(bert_response)
+      ruby_response = Mochilo.decode(bert_response)
       case ruby_response[0]
         when :reply
           ruby_response[1]
