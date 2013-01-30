@@ -6,7 +6,7 @@ module BananaPhone
 
     def decode_bert_response(bert_response)
       ruby_response = Mochilo.decode(bert_response)
-      case ruby_response[0]
+      case ruby_response[0].to_s
         when 'reply'
           ruby_response[1]
         when 'noreply'
@@ -21,7 +21,7 @@ module BananaPhone
     def error(err)
       level, code, klass, message, backtrace = err
 
-      case level
+      case level.to_s
         when 'protocol'
           raise ProtocolError.new([code, message], klass, backtrace)
         when 'server'
