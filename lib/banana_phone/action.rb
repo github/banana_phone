@@ -1,4 +1,4 @@
-module BERTRPC
+module BananaPhone
   class Action
     include Encodes
 

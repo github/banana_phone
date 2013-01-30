@@ -3,22 +3,22 @@ require 'test_helper'
 class RequestTest < MiniTest::Should::TestCase
   context "A Request" do
     setup do
-      @svc = BERTRPC::Service.new('localhost', 9941)
+      @svc = BananaPhone::Service.new('localhost', 9941)
     end
 
     should "be created with a Service and type" do
-      assert BERTRPC::Request.new(@svc, :call, nil).is_a?(BERTRPC::Request)
+      assert BananaPhone::Request.new(@svc, :call, nil).is_a?(BananaPhone::Request)
     end
   end
 
   context "A Request instance" do
     setup do
-      svc = BERTRPC::Service.new('localhost', 9941)
-      @req = BERTRPC::Request.new(@svc, :call, nil)
+      svc = BananaPhone::Service.new('localhost', 9941)
+      @req = BananaPhone::Request.new(@svc, :call, nil)
     end
 
     should "return a Mod instance" do
-      assert @req.myfun.is_a?(BERTRPC::Mod)
+      assert @req.myfun.is_a?(BananaPhone::Mod)
     end
   end
 end

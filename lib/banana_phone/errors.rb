@@ -1,5 +1,5 @@
-module BERTRPC
-  class BERTRPCError < StandardError
+module BananaPhone
+  class Error < StandardError
     attr_accessor :code, :original_exception
 
     def initialize(msg = nil, klass = nil, bt = [])
@@ -22,11 +22,10 @@ module BERTRPC
     end
   end
 
-  class RemoteError < StandardError
-
+  class RemoteError < Error
   end
 
-  class ConnectionError < BERTRPCError
+  class ConnectionError < Error
     attr_reader :host, :port
     def initialize(host, port)
       @host, @port = host, port
@@ -36,7 +35,7 @@ module BERTRPC
 
   # Raised when we don't get a response from a server in a timely
   # manner. This typically occurs in spite of a successful connection.
-  class ReadTimeoutError < BERTRPCError
+  class ReadTimeoutError < Error
     attr_reader :host, :port, :timeout
     def initialize(host, port, timeout)
       @host, @port, @timeout = host, port, timeout
@@ -45,7 +44,7 @@ module BERTRPC
   end
 
   # Raised when unexpected EOF is reached on the socket.
-  class ReadError < BERTRPCError
+  class ReadError < Error
     attr_reader :host, :port
     def initialize(host, port)
       @host, @port = host, port
@@ -53,24 +52,20 @@ module BERTRPC
     end
   end
 
-  class ProtocolError < BERTRPCError
+  class ProtocolError < Error
     NO_HEADER = [0, "Unable to read length header from server."]
     NO_DATA = [1, "Unable to read data from server."]
   end
 
-  class ServerError < BERTRPCError
-
+  class ServerError < Error
   end
 
-  class UserError < BERTRPCError
-
+  class UserError < Error
   end
 
-  class ProxyError < BERTRPCError
-
+  class ProxyError < Error
   end
 
-  class InvalidOption < BERTRPCError
-
+  class InvalidOption < Error
   end
 end

@@ -7,5 +7,5 @@ end
 task :default => :test
 
 task :console do
-  exec('irb -Ilib -rbertrpc')
+  exec('irb -Ilib -rbanana_phone')
 end

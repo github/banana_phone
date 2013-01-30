@@ -1,4 +1,4 @@
-module BERTRPC
+module BananaPhone
   class Request
     attr_accessor :kind, :options
 

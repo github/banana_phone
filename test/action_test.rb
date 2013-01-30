@@ -3,18 +3,18 @@ require 'test_helper'
 class ActionTest < MiniTest::Should::TestCase
   context "An Action" do
     setup do
-      @svc = BERTRPC::Service.new('localhost', 9941)
+      @svc = BananaPhone::Service.new('localhost', 9941)
       @req = @svc.call
     end
 
     should "be created with a Service, module name, fun name, and args" do
-      assert BERTRPC::Action.new(@svc, @req, :mymod, :myfun, [1, 2]).is_a?(BERTRPC::Action)
+      assert BananaPhone::Action.new(@svc, @req, :mymod, :myfun, [1, 2]).is_a?(BananaPhone::Action)
     end
   end
 
   context "An Action instance" do
     setup do
-      @svc = BERTRPC::Service.new('localhost', 9941)
+      @svc = BananaPhone::Service.new('localhost', 9941)
       @req = @svc.call
       @enc = Enc.new
     end
@@ -22,7 +22,7 @@ class ActionTest < MiniTest::Should::TestCase
     should "call with single-arity" do
       req = @enc.encode_ruby_request([:call, :mymod, :myfun, [1]])
       res = @enc.encode_ruby_request([:reply, 2])
-      call = BERTRPC::Action.new(@svc, @req, :mymod, :myfun, [1])
+      call = BananaPhone::Action.new(@svc, @req, :mymod, :myfun, [1])
       call.expects(:transaction).with(req).returns(res)
       assert_equal 2, call.execute
     end
@@ -30,7 +30,7 @@ class ActionTest < MiniTest::Should::TestCase
     should "call with single-arity array" do
       req = @enc.encode_ruby_request([:call, :mymod, :myfun, [[1, 2, 3]]])
       res = @enc.encode_ruby_request([:reply, [4, 5, 6]])
-      call = BERTRPC::Action.new(@svc, @req, :mymod, :myfun, [[1, 2, 3]])
+      call = BananaPhone::Action.new(@svc, @req, :mymod, :myfun, [[1, 2, 3]])
       call.expects(:transaction).with(req).returns(res)
       assert_equal [4, 5, 6], call.execute
     end
@@ -38,19 +38,19 @@ class ActionTest < MiniTest::Should::TestCase
     should "call with multi-arity" do
       req = @enc.encode_ruby_request([:call, :mymod, :myfun, [1, 2, 3]])
       res = @enc.encode_ruby_request([:reply, [4, 5, 6]])
-      call = BERTRPC::Action.new(@svc, @req, :mymod, :myfun, [1, 2, 3])
+      call = BananaPhone::Action.new(@svc, @req, :mymod, :myfun, [1, 2, 3])
       call.expects(:transaction).with(req).returns(res)
       assert_equal [4, 5, 6], call.execute
     end
 
     context "sync_request" do
       setup do
-        @svc = BERTRPC::Service.new('localhost', 9941)
+        @svc = BananaPhone::Service.new('localhost', 9941)
         @req = @svc.call
-        @call = BERTRPC::Action.new(@svc, @req, :mymod, :myfun, [])
+        @call = BananaPhone::Action.new(@svc, @req, :mymod, :myfun, [])
       end
 
-      should "read and write BERT-Ps from the socket" do
+      should "read and write BananaPack from the socket" do
         io = stub()
         io.expects(:write).with("\000\000\000\003")
         io.expects(:write).with("foo")
@@ -70,7 +70,7 @@ class ActionTest < MiniTest::Should::TestCase
         begin
           @call.transaction("foo")
           fail "Should have thrown an error"
-        rescue BERTRPC::ProtocolError => e
+        rescue BananaPhone::ProtocolError => e
           assert_equal 0, e.code
         end
       end
@@ -85,7 +85,7 @@ class ActionTest < MiniTest::Should::TestCase
          begin
           @call.transaction("foo")
           fail "Should have thrown an error"
-        rescue BERTRPC::ProtocolError => e
+        rescue BananaPhone::ProtocolError => e
           assert_equal 1, e.code
         end
       end
@@ -99,7 +99,7 @@ class ActionTest < MiniTest::Should::TestCase
         begin
           @call.transaction("foo")
           fail "Should have thrown an error"
-        rescue BERTRPC::ReadTimeoutError => e
+        rescue BananaPhone::ReadTimeoutError => e
           assert_equal 0, e.code
           assert_equal 'localhost', e.host
           assert_equal 9941, e.port
@@ -115,7 +115,7 @@ class ActionTest < MiniTest::Should::TestCase
         begin
           @call.transaction("foo")
           fail "Should have thrown an error"
-        rescue BERTRPC::ReadError => e
+        rescue BananaPhone::ReadError => e
           assert_equal 0, e.code
           assert_equal 'localhost', e.host
           assert_equal 9941, e.port

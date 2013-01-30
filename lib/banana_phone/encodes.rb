@@ -1,4 +1,4 @@
-module BERTRPC
+module BananaPhone
   module Encodes
     def encode_ruby_request(ruby_request)
       Mochilo.encode(ruby_request)

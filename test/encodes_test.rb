@@ -7,7 +7,7 @@ class EncodesTest < MiniTest::Should::TestCase
     end
 
     context "ruby request encoder" do
-      should "return BERT-RPC encoded request" do
+      should "return BananaPhone encoded request" do
         bert = "\x94\xD8\x00\x04\x01call\xD8\x00\x05\x01mymod\xD8\x00\x05\x01myfun\x93\x01\x02\x03"
         assert_equal bert, @enc.encode_ruby_request([:call, :mymod, :myfun, [1, 2, 3]])
       end
@@ -28,28 +28,28 @@ class EncodesTest < MiniTest::Should::TestCase
 
       should "raise a ProtocolError error when protocol level error is returned" do
         req = @enc.encode_ruby_request([:error, [:protocol, 1, "class", "invalid", []]])
-        assert_raises(BERTRPC::ProtocolError) do
+        assert_raises(BananaPhone::ProtocolError) do
           @enc.decode_bert_response(req)
         end
       end
 
       should "raise a ServerError error when server level error is returned" do
         req = @enc.encode_ruby_request([:error, [:server, 1, "class", "invalid", []]])
-        assert_raises(BERTRPC::ServerError) do
+        assert_raises(BananaPhone::ServerError) do
           @enc.decode_bert_response(req)
         end
       end
 
       should "raise a UserError error when user level error is returned" do
         req = @enc.encode_ruby_request([:error, [:user, 1, "class", "invalid", []]])
-        assert_raises(BERTRPC::UserError) do
+        assert_raises(BananaPhone::UserError) do
           @enc.decode_bert_response(req)
         end
       end
 
       should "raise a ProxyError error when proxy level error is returned" do
         req = @enc.encode_ruby_request([:error, [:proxy, 1, "class", "invalid", []]])
-        assert_raises(BERTRPC::ProxyError) do
+        assert_raises(BananaPhone::ProxyError) do
           @enc.decode_bert_response(req)
         end
       end

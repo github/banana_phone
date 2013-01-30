@@ -1,4 +1,4 @@
-module BERTRPC
+module BananaPhone
   class Mod
     def initialize(svc, req, mod)
       @svc = svc

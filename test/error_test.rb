@@ -4,7 +4,7 @@ class ErrorTest < MiniTest::Should::TestCase
   context "Errors in general" do
     should "be creatable with just a message string" do
       begin
-        raise BERTRPC::BERTRPCError.new('msg')
+        raise BananaPhone::Error.new('msg')
       rescue Object => e
         assert_equal "msg", e.message
         assert_equal 0, e.code
@@ -13,7 +13,7 @@ class ErrorTest < MiniTest::Should::TestCase
 
     should "be creatable with a [code, message] array" do
       begin
-        raise BERTRPC::BERTRPCError.new([7, 'msg'])
+        raise BananaPhone::Error.new([7, 'msg'])
       rescue Object => e
         assert_equal "msg", e.message
         assert_equal 7, e.code
@@ -22,7 +22,7 @@ class ErrorTest < MiniTest::Should::TestCase
 
     should "record the original exception" do
       begin
-        raise BERTRPC::BERTRPCError.new('msg', 'Error', ['foo', 'bar'])
+        raise BananaPhone::Error.new('msg', 'Error', ['foo', 'bar'])
       rescue Object => e
         assert_equal "msg", e.message
         assert_equal "Error: msg", e.original_exception.message

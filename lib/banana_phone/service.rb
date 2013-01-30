@@ -1,4 +1,4 @@
-module BERTRPC
+module BananaPhone
   class Service
     attr_accessor :host, :port, :timeout
 
