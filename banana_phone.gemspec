@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.authors = ["Tom Preston-Werner", "Brian Lopez"]
   s.email = %q{tom@mojombo.com seniorlopez@gmail.com}
   s.files = `git ls-files`.split("\n")
-  s.homepage = %q{http://github.com/brianmario/banana_phone}
+  s.homepage = %q{http://github.com/github/banana_phone}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.4.2}
