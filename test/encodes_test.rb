@@ -8,7 +8,7 @@ class EncodesTest < MiniTest::Should::TestCase
 
     context "ruby request encoder" do
       should "return BananaPhone encoded request" do
-        bert = "\x94\xD8\x00\x04\x01call\xD8\x00\x05\x01mymod\xD8\x00\x05\x01myfun\x93\x01\x02\x03"
+        bert = "\x94\xD4\x00\x04call\xD4\x00\x05mymod\xD4\x00\x05myfun\x93\x01\x02\x03"
         assert_equal bert, @enc.encode_ruby_request([:call, :mymod, :myfun, [1, 2, 3]])
       end
     end

@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    banana_phone (0.1.0)
-      mochilo
+    banana_phone (0.1.1)
+      mochilo (>= 0.5)
 
 GEM
   remote: http://rubygems.org/
@@ -18,7 +18,7 @@ GEM
     minitest_should (0.3.1)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
-    mochilo (0.3)
+    mochilo (0.5)
     multi_json (1.5.0)
     rake (10.0.3)
     shoulda (3.3.2)
