@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    banana_phone (0.1.1)
+    banana_phone (0.1.2)
       mochilo (>= 0.5)
 
 GEM
