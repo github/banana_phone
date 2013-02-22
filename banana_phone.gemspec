@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary = %q{BananaPhone is a RPC client for BananaPack}
   s.test_files = `git ls-files spec`.split("\n")
 
-  s.add_runtime_dependency 'mochilo', ">= 0.5"
+  s.add_runtime_dependency 'mochilo', ">= 0.6"
 
   # tests
   s.add_development_dependency 'rake'
