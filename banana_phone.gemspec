@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{banana_phone}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
   s.authors = ["Tom Preston-Werner", "Brian Lopez"]
   s.email = %q{tom@mojombo.com seniorlopez@gmail.com}
   s.files = `git ls-files`.split("\n")
